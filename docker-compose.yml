@@ -1,0 +1,38 @@
+version: '3.5'
+
+volumes:
+  postgres_data:
+    external:
+      true
+
+services:
+  api:
+    container_name: test_api
+    image: test_api
+    build:
+        context: .
+        dockerfile: ${PWD}/compose/api/Dockerfile
+    env_file:
+      - compose/api/api.env
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    volumes:
+      - ${PWD}/fixtures:/fixtures
+      - ${PWD}/api:/api
+    command: /start
+
+  postgres:
+    container_name: test_postgres
+    image: postgres:10.5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./compose/postgres/postgres.env
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
