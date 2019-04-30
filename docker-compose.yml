@@ -21,6 +21,8 @@ services:
     volumes:
       - ${PWD}/fixtures:/fixtures
       - ${PWD}/api:/api
+    ports:
+      - "80:80"
     command: /start
 
   postgres:
@@ -36,3 +38,5 @@ services:
     restart: always
     ports:
       - 8080:8080
+    env_file:
+      - ./compose/postgres/postgres.env

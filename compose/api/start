@@ -7,7 +7,7 @@ set -o nounset
 
 if [ ! -z "$FIXTURES_DIR" ]; then
     echo "Load fixtures"
-    find ${FIXTURES_DIR} -type f -iname "*.json" -exec python backend/utils/load_fixtures.py "{}" \;
+    find ${FIXTURES_DIR} -type f -iname "*.csv" -exec python /api/utils/load_fixtures.py "{}" \;
 fi
 
-gunicorn -b 0.0.0.0:5000 --access-logfile - "api.wsgi:app"
+gunicorn -b 0.0.0.0:80 --access-logfile - "api.wsgi:app"
