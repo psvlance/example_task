@@ -1,0 +1,15 @@
+import os
+
+
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+POSTGRES_USER = os.getenv('POSTGRES_USER')
+POSTGRES_DB = os.getenv('POSTGRES_DB')
+POSTGRES_HOST = os.getenv('POSTGRES_HOST')
+POSTGRES_PORT = os.getenv('POSTGRES_PORT')
+
+
+class Settings:
+    DATABASE_URL = f'postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
+
+
+settings = Settings()

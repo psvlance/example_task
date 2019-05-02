@@ -20,7 +20,7 @@ services:
       - postgres
     volumes:
       - ${PWD}/fixtures:/fixtures
-      - ${PWD}/api:/api
+      - ${PWD}/api:/api/api
     ports:
       - "80:80"
     command: /start
